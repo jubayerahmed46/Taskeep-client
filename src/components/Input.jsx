@@ -12,7 +12,7 @@ function Input({
   const classNames =
     className +
     " " +
-    " w-full focus:ring-1 focus:ring-[#0d0d0e97] outline-none border-littleBlack/30 rounded-md px-3 py-1  bg-transparent placeholder::text-gray-500 border";
+    " w-full focus:ring-1 focus:ring-[#0d0d0e97] outline-none border-littleBlack/30 rounded-md px-3 py-1  bg-transparent placeholder::text-gray-500 border    dark:border-gray-600";
 
   return (
     <label htmlFor={name} className="block">

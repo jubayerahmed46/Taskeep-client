@@ -69,7 +69,7 @@ function NavBar() {
             {user?.displayName && user.displayName[0]}
           </button>
           <div
-            className={`absolute top-14 right-3 rounded-md p-3 min-w-80 bg-white shadow-md  ${
+            className={`absolute top-14 right-3 rounded-md p-3 min-w-80 bg-white dark:bg-black dark:shadow-white/25 dark:text-littleWhite shadow-md  ${
               isOpen ? "block" : "hidden"
             }`}
           >
@@ -77,7 +77,7 @@ function NavBar() {
             <h2>Email: {user?.email} </h2>
             <button
               onClick={handleLogout}
-              className="bg-black text-white p-2 w-full rounded-md mt-4"
+              className="bg-black dark:bg-white/90 dark:text-black text-white p-2 w-full rounded-md mt-4"
             >
               Logout
             </button>

@@ -34,7 +34,7 @@ export default function EditFields({ isOpen, setIsOpen, task }) {
           <div className="flex min-h-full items-center justify-center p-4 ">
             <DialogPanel
               transition
-              className="border shadow-xl w-full max-w-xl mx-2 rounded-xl bg-white md:p-6 p-2 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+              className="border shadow-xl w-full max-w-xl dark:border-gray-800 mx-2  rounded-xl bg-white dark:bg-black dark:text-littleWhite md:p-6 p-2 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
             >
               <div>
                 <h2 className="font-semibold text-xl text-center mb-5">
@@ -67,11 +67,11 @@ export default function EditFields({ isOpen, setIsOpen, task }) {
                         description: e.target.value,
                       })
                     }
-                    className="focus:ring-1 focus:ring-[#0d0d0e97] outline-none border-littleBlack/30 rounded-md px-3 py-1  bg-transparent placeholder::text-gray-500 border w-full"
+                    className="focus:ring-1 focus:ring-[#0d0d0e97] outline-none dark:border-gray-600 border-littleBlack/30 rounded-md px-3 py-1  bg-transparent placeholder::text-gray-500 border w-full"
                   ></textarea>
                   <button
                     onClick={close}
-                    className="mt-2 hover:bg-black/80 bg-black p-2 rounded-md shadow-md  text-white"
+                    className="mt-2 hover:bg-black/80 bg-black p-2 rounded-md shadow-md  text-white dark:text-black dark:bg-littleWhite/90"
                   >
                     Update
                   </button>

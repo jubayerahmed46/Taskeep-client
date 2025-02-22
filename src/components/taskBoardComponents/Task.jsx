@@ -4,6 +4,7 @@ import { useDrag } from "react-dnd";
 import EditFields from "./EditFields";
 import Divider from "../Divider";
 import { TbEdit } from "react-icons/tb";
+import { HiMiniXMark } from "react-icons/hi2";
 
 function Task({ task }) {
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -64,13 +65,9 @@ function Task({ task }) {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className=" hover:text-secondary text-black md:size-7 size-6 self-end  rounded-full p-0.5   transition-all"
+          className=" hover:text-secondary dark:hover:bg-secondary text-black md:size-7 size-6 self-end  rounded-full p-0.5   transition-all"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M6 18 18 6M6 6l12 12"
-          />
+          <HiMiniXMark className="dark:text-white" />
         </svg>
         {/* edit */}
         <svg
@@ -80,9 +77,9 @@ function Task({ task }) {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className=" hover:text-primary text-black md:size-7 size-6 self-end  rounded-full p-0.5   transition-all"
+          className="dark:hover:bg-primary h-4 flex justify-center items-center aspect-square  hover:text-primary text-black md:size-7 size-6 self-end  rounded-full p-0.5   transition-all"
         >
-          <TbEdit />
+          <TbEdit className="dark:text-white " />
         </svg>
       </div>
       <EditFields isOpen={isOpen} setIsOpen={setIsOpen} task={task} />
