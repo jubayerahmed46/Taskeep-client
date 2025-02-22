@@ -2,6 +2,7 @@ import { useState } from "react";
 import Input from "../Input";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 
 function CreateTask({ refetch }) {
   const { user } = useAuth();
@@ -10,7 +11,15 @@ function CreateTask({ refetch }) {
     description: "",
     status: "todo",
   });
+  let [isOpen, setIsOpen] = useState(false);
 
+  function open() {
+    setIsOpen(true);
+  }
+
+  function close() {
+    setIsOpen(false);
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,6 +30,7 @@ function CreateTask({ refetch }) {
       })
       .then(() => {
         refetch();
+        close();
       });
 
     setTask({ title: "", description: "", status: "todo" });
@@ -28,37 +38,82 @@ function CreateTask({ refetch }) {
   };
 
   return (
-    <div>
-      <form
-        className="flex gap-2 flex-col max-w-xl  mx-auto my-5 p-4 bg-slate-300 rounded-md"
-        onSubmit={handleSubmit}
+    <div className="bg-white p-4 shadow-sm flex justify-between">
+      <div>
+        <h2 className="bg-white ">Welcome to Taskeep</h2>
+      </div>
+      <button
+        onClick={open}
+        className="flex  gap-1 items-center border p-2 bg-white shadow-md  border-gray-200 rounded-full"
       >
-        <Input
-          label=""
-          name="title"
-          value={task.title}
-          onChange={(e) =>
-            setTask({
-              ...task,
-              title: e.target.value,
-            })
-          }
-        />
-        <Input
-          label=""
-          name="description"
-          value={task.description}
-          onChange={(e) =>
-            setTask({
-              ...task,
-              description: e.target.value,
-            })
-          }
-        />
-        <button className="bg-black p-2 rounded-md shadow-md  text-white ml-2">
-          Create
-        </button>
-      </form>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-8 "
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
+      </button>
+
+      <Dialog
+        open={isOpen}
+        as="div"
+        className="relative z-10 focus:outline-none"
+        onClose={close}
+      >
+        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center p-4">
+            <DialogPanel
+              transition
+              className="shadow-xl w-full max-w-md rounded-xl bg-white md:p-6 p-2 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+            >
+              <h2 className="font-semibold text-xl text-center mb-5">
+                Create New Task
+              </h2>
+              <form
+                className="flex gap-2 flex-col max-w-xl  mx-auto p-4 bg-slate-300 rounded-md"
+                onSubmit={handleSubmit}
+              >
+                <Input
+                  label=""
+                  name="title"
+                  placeholder="Title..."
+                  value={task.title}
+                  onChange={(e) =>
+                    setTask({
+                      ...task,
+                      title: e.target.value,
+                    })
+                  }
+                />
+                <Input
+                  label=""
+                  name="description"
+                  placeholder="description (optional)"
+                  value={task.description}
+                  required={false}
+                  onChange={(e) =>
+                    setTask({
+                      ...task,
+                      description: e.target.value,
+                    })
+                  }
+                />
+                <button className="bg-black p-2 rounded-md shadow-md  text-white">
+                  Create
+                </button>
+              </form>
+            </DialogPanel>
+          </div>
+        </div>
+      </Dialog>
     </div>
   );
 }

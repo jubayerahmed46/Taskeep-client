@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useDrag } from "react-dnd";
 import EditFields from "./EditFields";
+import Divider from "../Divider";
 
 function Task({ task, refetch }) {
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -28,16 +29,21 @@ function Task({ task, refetch }) {
   return (
     <div
       ref={drag}
-      className={` border flex justify-between  bg-white/90 rounded-md p-2 cursor-pointer select-none ${
+      className={` border flex flex-col justify-between  bg-white/90 rounded-md p-2 cursor-pointer select-none ${
         isDragging ? "cursor-move" : ""
       }`}
     >
       {" "}
       <div>
         {" "}
-        <p>{task.title}</p> <p className="text-xs "> {task.description} </p>
+        <p className="md:text-base  text-sm font-medium">{task.title}</p>{" "}
+        <p className="text-xs mt-2 font-normal">
+          {" "}
+          {task.description.slice(0, 30)}{" "}
+        </p>
       </div>
-      <div>
+      <Divider />
+      <div className="flex gap-1">
         {/* delete */}
         <svg
           onClick={() => deleteHandler(task._id)}
@@ -46,7 +52,7 @@ function Task({ task, refetch }) {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className=" text-black size-5 self-end  rounded-full p-0.5 bg-secondary/10 hover:bg-secondary/35  transition-all"
+          className=" hover:text-secondary text-black md:size-7 size-6 self-end  rounded-full p-0.5   transition-all"
         >
           <path
             strokeLinecap="round"
@@ -62,7 +68,7 @@ function Task({ task, refetch }) {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="size-5 self-end  rounded-full p-0.5 bg-secondary/10 hover:bg-secondary/35  text-black transition-all"
+          className=" hover:text-primary text-black md:size-7 size-6 self-end  rounded-full p-0.5   transition-all"
         >
           <path
             strokeLinecap="round"

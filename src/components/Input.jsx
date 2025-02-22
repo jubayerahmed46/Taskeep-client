@@ -7,11 +7,12 @@ function Input({
   onChange,
   children,
   value = "",
+  required = true,
 }) {
   const classNames =
     className +
     " " +
-    "md:min-w-[400px] w-full focus:ring-1 focus:ring-[#0d0d0e97] outline-none border-littleBlack/30 rounded-md p-2  bg-transparent placeholder::text-gray-500 border";
+    "md:max-w-[400px] w-full focus:ring-1 focus:ring-[#0d0d0e97] outline-none border-littleBlack/30 rounded-md px-3 py-1  bg-transparent placeholder::text-gray-500 border";
 
   return (
     <label htmlFor={name} className="block">
@@ -24,7 +25,7 @@ function Input({
           placeholder={placeholder}
           onChange={onChange}
           value={value}
-          required
+          required={required}
         />
       ) : (
         <input
@@ -32,7 +33,7 @@ function Input({
           name={name}
           className={classNames}
           placeholder={placeholder}
-          required
+          required={required}
         />
       )}
       {children && <p className="my-2 text-secondary text-xs">{children}</p>}

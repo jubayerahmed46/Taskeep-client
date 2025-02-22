@@ -28,9 +28,6 @@ function TaskBoard() {
     <DndProvider backend={HTML5Backend}>
       <div className=" font-bold text-xl  w-full ">
         <div>
-          <h2 className="bg-white p-4 shadow-sm">Welcome to Taskeep</h2>
-        </div>
-        <div>
           <CreateTask tasks={data} refetch={refetch} />
           <TasksList tasks={data} refetch={refetch} />
         </div>

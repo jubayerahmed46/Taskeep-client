@@ -15,7 +15,6 @@ export default function EditFields({ isOpen, setIsOpen, task, refetch }) {
 
   const handleEdit = async (e) => {
     e.preventDefault();
-    console.log(edited, task._id);
     await axios
       .patch(`${import.meta.env.VITE_apiUrl}/api/tasks/${task._id}`, {
         title: edited.title,
@@ -39,9 +38,12 @@ export default function EditFields({ isOpen, setIsOpen, task, refetch }) {
           <div className="flex min-h-full items-center justify-center p-4 ">
             <DialogPanel
               transition
-              className="w-full max-w-md rounded-xl bg-white text-black p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+              className="shadow-xl w-full max-w-md rounded-xl bg-white md:p-6 p-2 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
             >
               <div>
+                <h2 className="font-semibold text-xl text-center mb-5">
+                  Update the Task
+                </h2>
                 <form
                   className="flex gap-2 flex-col max-w-xl  mx-auto my-5 p-4 bg-slate-300 rounded-md"
                   onSubmit={handleEdit}
