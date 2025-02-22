@@ -1,10 +1,10 @@
-import CreateTask from "./CreateTask";
-import TasksList from "./TasksList";
+import TasksList from "../../components/taskBoardComponents/TasksList";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import CreateTask from "../../components/taskBoardComponents/CreateTask";
 
 function TaskBoard() {
   const { user, loading } = useAuth();
@@ -21,12 +21,12 @@ function TaskBoard() {
   });
 
   if (isLoading) {
-    return;
+    return <h2>Loading....</h2>;
   }
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="text-blue-600 font-bold text-xl  w-full ">
+      <div className=" font-bold text-xl  w-full ">
         <div>
           <h2 className="bg-white p-4 shadow-sm">Welcome to Taskeep</h2>
         </div>

@@ -35,7 +35,7 @@ function Section({ status, tasks, refetch, inProgress, done, todos }) {
 
   const addItemToSection = async (id) => {
     await axios
-      .patch(`${import.meta.env.VITE_apiUrl}/api/tasks/${id}`, {
+      .patch(`${import.meta.env.VITE_apiUrl}/api/tasks/status/${id}`, {
         status: status,
       })
       .then(() => {

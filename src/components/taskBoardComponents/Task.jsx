@@ -46,7 +46,7 @@ function Task({ task, refetch }) {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="size-5 self-end  rounded-full p-0.5 bg-secondary/10 hover:bg-secondary/35 text-white transition-all"
+          className=" text-black size-5 self-end  rounded-full p-0.5 bg-secondary/10 hover:bg-secondary/35  transition-all"
         >
           <path
             strokeLinecap="round"
@@ -62,7 +62,7 @@ function Task({ task, refetch }) {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="size-5 self-end  rounded-full p-0.5 bg-secondary/10 hover:bg-secondary/35 text-white transition-all"
+          className="size-5 self-end  rounded-full p-0.5 bg-secondary/10 hover:bg-secondary/35  text-black transition-all"
         >
           <path
             strokeLinecap="round"
@@ -71,7 +71,12 @@ function Task({ task, refetch }) {
           />
         </svg>
       </div>
-      <EditFields isOpen={isOpen} setIsOpen={setIsOpen} task={task} />
+      <EditFields
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        task={task}
+        refetch={refetch}
+      />
     </div>
   );
 }

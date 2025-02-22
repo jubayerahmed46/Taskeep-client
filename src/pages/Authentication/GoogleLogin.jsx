@@ -15,10 +15,9 @@ function GoogleLogin({ label }) {
           email: user.email,
           displayName: user.displayName,
         };
-
+        navigate("/");
         await axios.post(`${import.meta.env.VITE_apiUrl}/api/users`, userInfo);
 
-        navigate("/");
         ToastMessage("✅ Sign In Successfully!");
       })
       .catch((err) => console.log(err));

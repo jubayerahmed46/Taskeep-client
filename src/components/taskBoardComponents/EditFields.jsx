@@ -1,9 +1,9 @@
-import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import useAuth from "../../hooks/useAuth";
+import { Dialog, DialogPanel } from "@headlessui/react";
 import { useState } from "react";
 import Input from "../Input";
+import axios from "axios";
 
-export default function EditFields({ isOpen, setIsOpen, task }) {
+export default function EditFields({ isOpen, setIsOpen, task, refetch }) {
   const [edited, setEdited] = useState({
     title: task.title,
     description: task.description,
@@ -13,9 +13,17 @@ export default function EditFields({ isOpen, setIsOpen, task }) {
     setIsOpen(false);
   }
 
-  const handleEdit = (e) => {
+  const handleEdit = async (e) => {
     e.preventDefault();
     console.log(edited, task._id);
+    await axios
+      .patch(`${import.meta.env.VITE_apiUrl}/api/tasks/${task._id}`, {
+        title: edited.title,
+        description: edited.description,
+      })
+      .then(() => {
+        refetch();
+      });
   };
 
   return (
@@ -64,7 +72,7 @@ export default function EditFields({ isOpen, setIsOpen, task }) {
                     onClick={close}
                     className="bg-black p-2 rounded-md shadow-md  text-white ml-2"
                   >
-                    Create
+                    Update
                   </button>
                 </form>
               </div>

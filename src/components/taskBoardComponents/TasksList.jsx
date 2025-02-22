@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import Section from "../../components/taskBoardComponents/Section";
-import EditFields from "../../components/taskBoardComponents/EditFields";
+import Section from "./Section";
 
 function TasksList({ tasks, refetch }) {
   const [todos, setTodos] = useState([]);

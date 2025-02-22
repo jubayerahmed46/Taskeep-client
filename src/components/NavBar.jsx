@@ -1,12 +1,21 @@
+import { IoMenu } from "react-icons/io5";
+import useAuth from "../hooks/useAuth";
+import ToastMessage from "./ToastMessage";
+import { useState } from "react";
+
 function NavBar() {
+  const { user, logoutUser } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleLogout = () => {
+    logoutUser().then(() => {
+      ToastMessage("Logout successfully!", { icon: "success" });
+    });
+  };
   return (
     <div className="h-14 w-full flex items-center flex justify-between px-3  bg-primary ">
-      <div className=" flex gap-5 items-center">
-        <img
-          src="https://i.ibb.co.com/whcKGwg2/icons8-menu-50.png"
-          className="h-5 brightness-150"
-          alt=""
-        />
+      <div className=" flex gap-5 items-center *:text-white">
+        <IoMenu className="text-white  text-xl" />
         <h2 className="uppercase  text-xl text-white">Taskeep</h2>
       </div>
       <div className="flex items-center">
@@ -32,7 +41,29 @@ function NavBar() {
             <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
           </svg>
         </label>
-        <div className="w-10 aspect-square rounded-full bg-black"></div>
+        <div className="relative">
+          <button
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="text-white text-2xl ring-1 ring-secondary font-mono uppercase w-9 aspect-square rounded-full flex justify-center items-center bg-black"
+          >
+            {" "}
+            {user.displayName[0]}{" "}
+          </button>
+          <div
+            className={`absolute top-14 right-3 rounded-md p-3 min-w-80 bg-white shadow-md  ${
+              isOpen ? "block" : "hidden"
+            }`}
+          >
+            <h2>Name: {user.displayName} </h2>
+            <h2>Email: {user.email} </h2>
+            <button
+              onClick={handleLogout}
+              className="bg-black text-white p-2 w-full rounded-md mt-4"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
