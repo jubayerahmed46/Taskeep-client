@@ -19,8 +19,11 @@ function NavBar() {
   }, [theme]);
 
   const handleChangeTheme = () => {
-    const newTheme =
-      localStorage.getItem("theme") === "light" ? "dark" : "light";
+    const newTheme = !localStorage.getItem("theme")
+      ? "dark"
+      : localStorage.getItem("theme") === "light"
+      ? "dark"
+      : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
     document.documentElement.setAttribute("class", newTheme);
