@@ -42,7 +42,7 @@ function Section({ status, inProgress, done, todos }) {
   return (
     <div
       ref={drop}
-      className={`p-2 rounded-md  bg-littleBlack/15 w-full ${
+      className={`p-2 rounded-md  bg-littleBlack/15 dark:bg-littleWhite/5 w-full ${
         isOver ? "bg-littleBlack/20" : ""
       }`}
     >

@@ -37,13 +37,15 @@ function CreateTask() {
   };
 
   return (
-    <div className="bg-white p-4 shadow-sm flex justify-between rounded-md">
+    <div className="bg-white dark:bg-black/95 p-4 shadow-sm flex justify-between rounded-md">
       <div>
-        <h2 className="bg-white md:text-3xl text-xl">Welcome to Taskeep</h2>
+        <h2 className=" dark:text-littleWhite md:text-3xl text-xl">
+          Welcome to Taskeep
+        </h2>
       </div>
       <button
         onClick={open}
-        className="flex  gap-1 items-center border p-2 bg-white shadow-md  border-gray-200 rounded-full"
+        className="flex  gap-1 items-center border p-2 bg-white dark:text-white dark:bg-littleBlack dark:border-none shadow-md  border-gray-200 rounded-full"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

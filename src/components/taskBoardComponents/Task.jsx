@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDrag } from "react-dnd";
 import EditFields from "./EditFields";
 import Divider from "../Divider";
+import { TbEdit } from "react-icons/tb";
 
 function Task({ task }) {
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -26,7 +27,7 @@ function Task({ task }) {
   return (
     <div
       ref={drag}
-      className={` border flex flex-col justify-between  bg-white/90 rounded-md md:p-4 shadow-md  p-2 cursor-pointer select-none ${
+      className={` border flex flex-col justify-between  bg-white/90 dark:bg-black/80 dark:text-littleWhite/95 dark:border-black/70 rounded-md md:p-4 shadow-md  p-2 cursor-pointer select-none ${
         isDragging ? "cursor-move opacity-50" : "opacity-100"
       }`}
     >
@@ -81,11 +82,7 @@ function Task({ task }) {
           stroke="currentColor"
           className=" hover:text-primary text-black md:size-7 size-6 self-end  rounded-full p-0.5   transition-all"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-          />
+          <TbEdit />
         </svg>
       </div>
       <EditFields isOpen={isOpen} setIsOpen={setIsOpen} task={task} />
