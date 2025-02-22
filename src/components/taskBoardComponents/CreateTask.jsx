@@ -2,9 +2,9 @@ import { useState } from "react";
 import Input from "../Input";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
-import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
+import { Dialog, DialogPanel } from "@headlessui/react";
 
-function CreateTask({ refetch }) {
+function CreateTask() {
   const { user } = useAuth();
   const [task, setTask] = useState({
     title: "",
@@ -29,7 +29,6 @@ function CreateTask({ refetch }) {
         email: user.email,
       })
       .then(() => {
-        refetch();
         close();
       });
 
@@ -38,9 +37,9 @@ function CreateTask({ refetch }) {
   };
 
   return (
-    <div className="bg-white p-4 shadow-sm flex justify-between">
+    <div className="bg-white p-4 shadow-sm flex justify-between rounded-md">
       <div>
-        <h2 className="bg-white ">Welcome to Taskeep</h2>
+        <h2 className="bg-white md:text-3xl text-xl">Welcome to Taskeep</h2>
       </div>
       <button
         onClick={open}

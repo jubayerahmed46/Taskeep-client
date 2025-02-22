@@ -3,7 +3,7 @@ import Header from "./Header";
 import Task from "./Task";
 import axios from "axios";
 
-function Section({ status, tasks, refetch, inProgress, done, todos }) {
+function Section({ status, inProgress, done, todos }) {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "task",
     drop: (item) => {
@@ -34,13 +34,9 @@ function Section({ status, tasks, refetch, inProgress, done, todos }) {
   }
 
   const addItemToSection = async (id) => {
-    await axios
-      .patch(`${import.meta.env.VITE_apiUrl}/api/tasks/status/${id}`, {
-        status: status,
-      })
-      .then(() => {
-        refetch();
-      });
+    await axios.patch(`${import.meta.env.VITE_apiUrl}/api/tasks/status/${id}`, {
+      status: status,
+    });
   };
 
   return (
@@ -54,7 +50,7 @@ function Section({ status, tasks, refetch, inProgress, done, todos }) {
       {tasksToMap.length > 0 && (
         <div className="flex gap-3 flex-col mt-2">
           {tasksToMap.map((task, i) => {
-            return <Task key={task._id || i} task={task} refetch={refetch} />;
+            return <Task key={task._id || i} task={task} />;
           })}
         </div>
       )}

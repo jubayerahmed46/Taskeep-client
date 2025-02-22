@@ -3,7 +3,7 @@ import { useState } from "react";
 import Input from "../Input";
 import axios from "axios";
 
-export default function EditFields({ isOpen, setIsOpen, task, refetch }) {
+export default function EditFields({ isOpen, setIsOpen, task }) {
   const [edited, setEdited] = useState({
     title: task.title,
     description: task.description,
@@ -15,14 +15,10 @@ export default function EditFields({ isOpen, setIsOpen, task, refetch }) {
 
   const handleEdit = async (e) => {
     e.preventDefault();
-    await axios
-      .patch(`${import.meta.env.VITE_apiUrl}/api/tasks/${task._id}`, {
-        title: edited.title,
-        description: edited.description,
-      })
-      .then(() => {
-        refetch();
-      });
+    await axios.patch(`${import.meta.env.VITE_apiUrl}/api/tasks/${task._id}`, {
+      title: edited.title,
+      description: edited.description,
+    });
   };
 
   return (

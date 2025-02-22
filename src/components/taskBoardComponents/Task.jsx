@@ -4,7 +4,7 @@ import { useDrag } from "react-dnd";
 import EditFields from "./EditFields";
 import Divider from "../Divider";
 
-function Task({ task, refetch }) {
+function Task({ task }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "task",
     item: { id: task._id },
@@ -13,13 +13,10 @@ function Task({ task, refetch }) {
     }),
   }));
   let [isOpen, setIsOpen] = useState(false);
+  const [descSize, setDescSize] = useState(80);
 
   const deleteHandler = async (id) => {
-    await axios
-      .delete(`${import.meta.env.VITE_apiUrl}/api/tasks/${id}`, {
-        status,
-      })
-      .then(() => refetch());
+    await axios.delete(`${import.meta.env.VITE_apiUrl}/api/tasks/${id}`);
   };
 
   function open() {
@@ -29,17 +26,31 @@ function Task({ task, refetch }) {
   return (
     <div
       ref={drag}
-      className={` border flex flex-col justify-between  bg-white/90 rounded-md p-2 cursor-pointer select-none ${
-        isDragging ? "cursor-move" : ""
+      className={` border flex flex-col justify-between  bg-white/90 rounded-md md:p-4 shadow-md  p-2 cursor-pointer select-none ${
+        isDragging ? "cursor-move opacity-50" : "opacity-100"
       }`}
     >
       {" "}
       <div>
         {" "}
-        <p className="md:text-base  text-sm font-medium">{task.title}</p>{" "}
-        <p className="text-xs mt-2 font-normal">
+        <p className="sm:text-base  text-xs font-medium">{task.title}</p>{" "}
+        <p className="sm:text-xs text-xs mt-2 font-normal">
           {" "}
-          {task.description.slice(0, 30)}{" "}
+          <span>{task.description.slice(0, descSize)}</span>
+          {task.description.length > 30 && (
+            <span
+              className="text-lg font-bold hover:underline "
+              onClick={() =>
+                setDescSize((prev) =>
+                  prev === task.description.length
+                    ? 80
+                    : task.description.length
+                )
+              }
+            >
+              ...
+            </span>
+          )}{" "}
         </p>
       </div>
       <Divider />
@@ -77,12 +88,7 @@ function Task({ task, refetch }) {
           />
         </svg>
       </div>
-      <EditFields
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        task={task}
-        refetch={refetch}
-      />
+      <EditFields isOpen={isOpen} setIsOpen={setIsOpen} task={task} />
     </div>
   );
 }

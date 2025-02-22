@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Section from "./Section";
 
-function TasksList({ tasks, refetch }) {
+function TasksList({ tasks, setTasks }) {
   const [todos, setTodos] = useState([]);
   const [inProgress, setInProgress] = useState([]);
   const [done, setDone] = useState([]);
@@ -19,13 +19,13 @@ function TasksList({ tasks, refetch }) {
 
   const statuses = ["todo", "inprogress", "done"];
   return (
-    <div className=" flex  gap-2 mt-3">
+    <div className=" grid grid-cols-3  md:gap-2 gap-1 mt-3 ">
       {statuses.map((status, i) => (
         <Section
           key={i}
           status={status}
           tasks={tasks}
-          refetch={refetch}
+          setTasks={setTasks}
           todos={todos}
           inProgress={inProgress}
           done={done}

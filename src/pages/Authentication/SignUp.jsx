@@ -90,6 +90,7 @@ function SignUp() {
             type="text"
             name="fullName"
             placeholder="John Doe"
+            className="min-w-[400px]"
           />
           <Input
             label="Email"
