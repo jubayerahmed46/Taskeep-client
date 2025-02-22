@@ -1,4 +1,4 @@
-# Taskeep (Modern Task Management Application)
+# Taskeep (Task Management Application)
 
 **Taskeep** is a powerful **task management web application** that helps you plan your daily life more effectively. It provides a modern and interactive experience with real-time task updates, ensuring you stay consistent with your work.
 
@@ -11,7 +11,7 @@
 </a>
 </p>
 
-### Firebase Live Link: [Taskeep Task](https://taskeep-task.web.app)
+### Firebase Live Link: https://taskeep-task.web.app
 
 ## Features
 
