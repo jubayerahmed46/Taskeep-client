@@ -32,9 +32,9 @@ function SignUp() {
     setLoading(true);
     setFirebaseErr("");
     try {
-      await signUpWithEmailAndPassword(email, password)
-        .then(async ({ user }) => {
-          await updateProfile(user, { displayName: user.fullName });
+      await signUpWithEmailAndPassword(email, password).then(
+        async ({ user }) => {
+          await updateProfile(user, { displayName: fullName });
 
           const userInfo = {
             userId: user.uid,
@@ -46,8 +46,8 @@ function SignUp() {
             `${import.meta.env.VITE_apiUrl}/api/users`,
             userInfo
           );
-        })
-        .catch((err) => console.log(err));
+        }
+      );
 
       navigate("/");
 
@@ -90,7 +90,7 @@ function SignUp() {
             type="text"
             name="fullName"
             placeholder="John Doe"
-            className="min-w-[400px]"
+            className="md:min-w-[400px]"
           />
           <Input
             label="Email"

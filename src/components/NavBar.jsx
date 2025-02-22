@@ -4,7 +4,7 @@ import ToastMessage from "./ToastMessage";
 import { useState } from "react";
 
 function NavBar() {
-  const { user, logoutUser } = useAuth();
+  const { user, logoutUser, loading } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = () => {
@@ -12,6 +12,8 @@ function NavBar() {
       ToastMessage("Logout successfully!", { icon: "success" });
     });
   };
+
+  if (loading) return;
   return (
     <div className="h-14 w-full flex items-center flex justify-between px-3  bg-primary ">
       <div className=" flex gap-5 items-center *:text-white">
@@ -46,16 +48,15 @@ function NavBar() {
             onClick={() => setIsOpen((prev) => !prev)}
             className="text-white text-2xl ring-1 ring-secondary font-mono uppercase w-9 aspect-square rounded-full flex justify-center items-center bg-black"
           >
-            {" "}
-            {user.displayName[0]}{" "}
+            {user?.displayName && user.displayName[0]}
           </button>
           <div
             className={`absolute top-14 right-3 rounded-md p-3 min-w-80 bg-white shadow-md  ${
               isOpen ? "block" : "hidden"
             }`}
           >
-            <h2>Name: {user.displayName} </h2>
-            <h2>Email: {user.email} </h2>
+            <h2>Name: {user?.displayName} </h2>
+            <h2>Email: {user?.email} </h2>
             <button
               onClick={handleLogout}
               className="bg-black text-white p-2 w-full rounded-md mt-4"

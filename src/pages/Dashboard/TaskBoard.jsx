@@ -30,8 +30,6 @@ function TaskBoard() {
     };
 
     const handleUpdateTitleAndDesc = (updatedTask) => {
-      console.log(updatedTask);
-
       setTasks((prev) => {
         return prev.map((t) =>
           t._id === updatedTask.id
@@ -75,7 +73,6 @@ function TaskBoard() {
   }, [socket]);
 
   if (loading) return;
-  console.log(tasks);
 
   return (
     <DndProvider backend={HTML5Backend}>

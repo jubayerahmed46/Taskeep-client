@@ -75,7 +75,7 @@ function SignIn() {
             type="email"
             name="email"
             placeholder="john@email.com"
-            className="min-w-[400px]"
+            className="md:min-w-[400px]"
           >
             {firebaseErr}{" "}
           </Input>{" "}

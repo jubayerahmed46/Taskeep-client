@@ -8,19 +8,17 @@ function GoogleLogin({ label }) {
   const { googleLogin } = useAuth();
   const navigate = useNavigate();
   const handleGoogleLogin = () => {
-    googleLogin()
-      .then(async ({ user }) => {
-        const userInfo = {
-          userId: user.uid,
-          email: user.email,
-          displayName: user.displayName,
-        };
-        navigate("/");
-        await axios.post(`${import.meta.env.VITE_apiUrl}/api/users`, userInfo);
+    googleLogin().then(async ({ user }) => {
+      const userInfo = {
+        userId: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+      };
+      navigate("/");
+      await axios.post(`${import.meta.env.VITE_apiUrl}/api/users`, userInfo);
 
-        ToastMessage("✅ Sign In Successfully!");
-      })
-      .catch((err) => console.log(err));
+      ToastMessage("✅ Sign In Successfully!");
+    });
   };
   return (
     <button
